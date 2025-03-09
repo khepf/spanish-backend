@@ -4,7 +4,7 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["back-end/back-end.csproj", "YourProjectName/"]
+COPY ["back-end/back-end.csproj", "back-end/"]
 RUN dotnet restore "back-end/back-end.csproj"
 COPY . .
 WORKDIR "/src/back-end"
