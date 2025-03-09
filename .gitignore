@@ -1,0 +1,82 @@
+# Visual Studio
+.vscode/
+*.vs
+*.vscode
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Backup & reporting
+*.buildlog
+*.filelist
+*.filelistabsolute
+*.refresh
+
+# Build Results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# NuGet Packages
+*.nupkg
+# Uncomment if you're using the NuGet cache directory
+# **/packages/*
+# Uncomment if you're using NuGet package restore that installs packages
+packages/
+# NuGet v3's project.json files produces this directory
+*.nuget
+*.snupkg
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# OSX
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+*.swp
+.*.swp
+.*swp
+.fseventsd
+
+# IntelliJ IDEA
+.idea/
+
+# Rider
+.idea/
+*.sln.iml
+*.ipr
+*.iws
+
+# Other
+**/docfx/api
+**/docfx/index.html
