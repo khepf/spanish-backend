@@ -1,19 +1,19 @@
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
-WORKDIR /app
+WORKDIR /back-end
 EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
-WORKDIR /src
-COPY ./back-end/back-end.csproj ./back-end/
-RUN dotnet restore "./back-end/back-end.csproj"
-COPY ./back-end/ ./back-end/
-WORKDIR /src/back-end
-RUN dotnet build "back-end.csproj" -c Release -o /app/build
+WORKDIR /back-end
+COPY ["back-end.csproj", "./"]
+RUN dotnet restore "back-end.csproj"
+COPY . .
+WORKDIR /back-end
+RUN dotnet build "back-end.csproj" -c Release -o /back-end/build
 
 FROM build AS publish
-RUN dotnet publish "back-end.csproj" -c Release -o /app/publish
+RUN dotnet publish "back-end.csproj" -c Release -o /back-end/publish
 
 FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
+WORKDIR /back-end
+COPY --from=publish /back-end/publish .
 ENTRYPOINT ["dotnet", "back-end.dll"]
