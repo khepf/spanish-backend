@@ -152,3 +152,6 @@ C:\Users\jerem\Desktop\CODE\spanish cards\back-end\obj\Debug\net9.0\refint\back-
 C:\Users\jerem\Desktop\CODE\spanish cards\back-end\obj\Debug\net9.0\back-end.pdb
 C:\Users\jerem\Desktop\CODE\spanish cards\back-end\obj\Debug\net9.0\back-end.genruntimeconfig.cache
 C:\Users\jerem\Desktop\CODE\spanish cards\back-end\obj\Debug\net9.0\ref\back-end.dll
+C:\Users\jerem\Desktop\CODE\spanish cards\back-end\obj\Debug\net9.0\back-end.sourcelink.json
+C:\Users\jerem\Desktop\CODE\spanish cards\back-end\bin\Debug\net9.0\Npgsql.dll
+C:\Users\jerem\Desktop\CODE\spanish cards\back-end\bin\Debug\net9.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
