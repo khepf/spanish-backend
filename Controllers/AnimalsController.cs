@@ -5,16 +5,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 [Route("api/[controller]")]
 [ApiController]
 public class AnimalsController : ControllerBase
 {
     private readonly AnimalContext _context;
+    private readonly ILogger<AnimalsController> _logger;
 
-    public AnimalsController(AnimalContext context)
+    public AnimalsController(AnimalContext context, ILogger<AnimalsController> logger)
     {
         _context = context;
+        _logger = logger;
     }
 
     [HttpGet]
@@ -26,14 +29,18 @@ public class AnimalsController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<Animal>> GetAnimal(int id)
     {
+        _logger.LogInformation($"Fetching animal with id: {id}");
         var animal = await _context.Animals.FindAsync(id);
 
         if (animal == null)
         {
+            _logger.LogWarning($"Animal with id: {id} not found");
             return NotFound();
         }
 
-        return animal;
+        _logger.LogInformation($"Animal found: {animal.Name}");
+
+        return Ok(animal); // Ensure JSON response
     }
 
     [HttpPost]
@@ -72,33 +79,5 @@ public class AnimalsController : ControllerBase
         await _context.SaveChangesAsync();
 
         return NoContent();
-    }
-
-    [HttpPost("upload-audio")]
-    public async Task<IActionResult> UploadAudio([FromForm] IFormFile file)
-    {
-        if (file == null || file.Length == 0)
-            return BadRequest("No file uploaded.");
-
-        var googleDriveService = new GoogleDriveService();
-        var audioUrl = await googleDriveService.UploadFileAsync(file.OpenReadStream(), file.FileName, file.ContentType);
-
-        if (string.IsNullOrEmpty(audioUrl))
-            return StatusCode(500, "Audio upload failed.");
-
-        return Ok(new { Url = audioUrl });
-    }
-
-    [HttpGet("audio/{cardId}")]
-    public async Task<IActionResult> GetAudio(int cardId)
-    {
-        var animal = await _context.Animals.FindAsync(cardId);
-        if (animal == null)
-        {
-            return NotFound();
-        }
-
-        // Assuming the audio URL is stored in the Animal model
-        return Ok(new { Url = animal.AudioUrl });
     }
 }
