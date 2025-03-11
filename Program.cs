@@ -14,7 +14,7 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
     {
-        builder.WithOrigins("http://localhost:5173") // Adjust the origin to match your front-end
+        builder.WithOrigins(Environment.GetEnvironmentVariable("FRONTEND_URL")) // Use environment variable
                .AllowAnyHeader()
                .AllowAnyMethod();
     });
