@@ -14,13 +14,8 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
     {
-        var frontendUrl = Environment.GetEnvironmentVariable("FRONTEND_URL") ?? "http://localhost:5173"; // Use environment variable with fallback
-        if (string.IsNullOrEmpty(frontendUrl))
-        {
-            throw new ArgumentNullException("FRONTEND_URL", "FRONTEND_URL environment variable is not set.");
-        }
-
-        builder.WithOrigins(frontendUrl)
+        var frontendUrls = Environment.GetEnvironmentVariable("FRONTEND_URL")?.Split(';') ?? new[] { "http://localhost:5173" };
+        builder.WithOrigins(frontendUrls)
                .AllowAnyHeader()
                .AllowAnyMethod()
                .AllowCredentials(); // Allow credentials if needed
