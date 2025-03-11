@@ -19,7 +19,8 @@ namespace BackEnd.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Translation = table.Column<string>(type: "text", nullable: false),
-                    ImageLocation = table.Column<string>(type: "text", nullable: false)
+                    ImageLocation = table.Column<string>(type: "text", nullable: false),
+                    AudioUrl = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {

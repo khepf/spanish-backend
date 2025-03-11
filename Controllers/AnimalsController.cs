@@ -73,4 +73,32 @@ public class AnimalsController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpPost("upload-audio")]
+    public async Task<IActionResult> UploadAudio([FromForm] IFormFile file)
+    {
+        if (file == null || file.Length == 0)
+            return BadRequest("No file uploaded.");
+
+        var googleDriveService = new GoogleDriveService();
+        var audioUrl = await googleDriveService.UploadFileAsync(file.OpenReadStream(), file.FileName, file.ContentType);
+
+        if (string.IsNullOrEmpty(audioUrl))
+            return StatusCode(500, "Audio upload failed.");
+
+        return Ok(new { Url = audioUrl });
+    }
+
+    [HttpGet("audio/{cardId}")]
+    public async Task<IActionResult> GetAudio(int cardId)
+    {
+        var animal = await _context.Animals.FindAsync(cardId);
+        if (animal == null)
+        {
+            return NotFound();
+        }
+
+        // Assuming the audio URL is stored in the Animal model
+        return Ok(new { Url = animal.AudioUrl });
+    }
 }

@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BackEnd.Migrations
 {
     [DbContext(typeof(AnimalContext))]
-    [Migration("20250311170132_InitialCreate")]
+    [Migration("20250311180325_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -31,6 +31,9 @@ namespace BackEnd.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AudioUrl")
+                        .HasColumnType("text");
 
                     b.Property<string>("ImageLocation")
                         .IsRequired()

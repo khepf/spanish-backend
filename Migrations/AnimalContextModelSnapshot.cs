@@ -29,6 +29,9 @@ namespace BackEnd.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AudioUrl")
+                        .HasColumnType("text");
+
                     b.Property<string>("ImageLocation")
                         .IsRequired()
                         .HasColumnType("text");

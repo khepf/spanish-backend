@@ -80,3 +80,5 @@ $RECYCLE.BIN/
 # Other
 **/docfx/api
 **/docfx/index.html
+
+client_secrets.json
